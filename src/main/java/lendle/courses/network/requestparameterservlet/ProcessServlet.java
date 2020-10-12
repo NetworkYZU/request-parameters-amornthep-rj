@@ -52,7 +52,33 @@ public class ProcessServlet extends HttpServlet {
                 out.print(name+" = ");
                 out.print(request.getParameter(name)+"</br>");
             }
-            //out.println(request.getParameter("username"));
+            String[] lis = request.getParameterValues("group2");
+            for(int i=0;i<lis.length;i++){
+                out.print(i+"="+lis[i]+"</br>");
+            }
+            out.println("</body>");
+            out.println("</html>");
+        } finally {
+            out.close();
+        }
+    }
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ProcessServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            Enumeration<String> names = request.getParameterNames();
+            while(names.hasMoreElements()){
+                String name = names.nextElement();
+                out.print(request.getParameter(name)+"</br>");
+            }
             out.println("</body>");
             out.println("</html>");
         } finally {
